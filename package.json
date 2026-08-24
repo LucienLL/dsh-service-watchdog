@@ -1,6 +1,6 @@
 {
   "name": "dsh-service-watchdog",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "DeepSeek Harness plugin: restart the DSH web service from the main UI with a second confirmation when agent sessions are active, a live running/stopped status, a detached self-healing watchdog, and optional login autostart",
   "type": "module",
   "main": "lib/index.js",
