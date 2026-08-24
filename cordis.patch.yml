@@ -1,4 +1,4 @@
-# Bundle patch layer for dsh-service-control: inserts the service-control row
+# Bundle patch layer for dsh-service-watchdog: inserts the service-control row
 # into the launcher composition (host half = lib/index.js, browser half =
 # ./client). Values below are the composition `base` layer; overridable live
 # from Settings -> Plugins -> Service control.

@@ -4,6 +4,7 @@ import test from 'node:test'
 import vm from 'node:vm'
 
 const clientSource = await readFile(new URL('../lib/client.js', import.meta.url), 'utf8')
+const packageManifest = JSON.parse(await readFile(new URL('../package.json', import.meta.url), 'utf8'))
 
 test('browser face injects Cordis service names rather than package names', () => {
   let registration
@@ -18,7 +19,7 @@ test('browser face injects Cordis service names rather than package names', () =
   })
 
   vm.runInContext(clientSource, context)
-  assert.equal(registration?.id, 'dsh-service-control/client')
+  assert.equal(registration?.id, `${packageManifest.name}/client`)
 
   const client = registration.factory((specifier) => {
     if (specifier === 'react') {
