@@ -1,6 +1,6 @@
 {
   "name": "dsh-service-watchdog",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "DeepSeek Harness plugin: restart the DSH web service from the main UI with a second confirmation when agent sessions are active, a live running/stopped status, a detached self-healing watchdog, and optional login autostart",
   "type": "module",
   "main": "lib/index.js",
@@ -27,6 +27,14 @@
     "service"
   ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LucienLL/dsh-service-watchdog.git"
+  },
+  "homepage": "https://github.com/LucienLL/dsh-service-watchdog#readme",
+  "bugs": {
+    "url": "https://github.com/LucienLL/dsh-service-watchdog/issues"
+  },
   "dsh": {
     "bundle": {
       "patch": "./cordis.patch.yml"
