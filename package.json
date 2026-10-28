@@ -15,7 +15,8 @@
     "README.md"
   ],
   "scripts": {
-    "test": "node --test test/*.mjs"
+    "test": "node --test test/*.mjs",
+    "test:integration": "node test/integration/entry-plane.mjs"
   },
   "keywords": [
     "deepseek-harness",
