@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import { buildRunCmd, resolveWatchdogPort } from '../lib/index.js'
+import { DEFAULT_WATCHDOG_PORT } from '../lib/ports.js'
 
 test('buildRunCmd points the Run key at launcher.js (for orphanization)', () => {
   assert.equal(
@@ -14,9 +15,9 @@ test('buildRunCmd points the Run key at launcher.js (for orphanization)', () => 
 })
 
 test('resolveWatchdogPort falls back to the default port when config is missing', () => {
-  assert.equal(resolveWatchdogPort(undefined), 3199)
-  assert.equal(resolveWatchdogPort(null), 3199)
-  assert.equal(resolveWatchdogPort(''), 3199)
-  assert.equal(resolveWatchdogPort(0), 3199)
+  assert.equal(resolveWatchdogPort(undefined), DEFAULT_WATCHDOG_PORT)
+  assert.equal(resolveWatchdogPort(null), DEFAULT_WATCHDOG_PORT)
+  assert.equal(resolveWatchdogPort(''), DEFAULT_WATCHDOG_PORT)
+  assert.equal(resolveWatchdogPort(0), DEFAULT_WATCHDOG_PORT)
   assert.equal(resolveWatchdogPort(3201), 3201)
 })

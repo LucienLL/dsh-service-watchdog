@@ -13,8 +13,9 @@ DeepSeek Harness 主界面服务控制插件：**重启 / 状态 / 看门狗 / �
 
 ## 工作原理
 
-- 看门狗监听 `127.0.0.1:<watchdogPort>`（默认 3199），浏览器直连它下发 `start` / `restart`，服务死了按钮依然可用。
-- 看门狗暴露 loopback-only HTTP 接口：`/health`（含 codeHash/uptime）、`/status`、`/reload`、`/restart`、`/start`、`/stop`、`/shutdown`。
+- 看门狗监听 `127.0.0.1:<watchdogPort>`（默认 43180），浏览器直连它下发 `start` / `restart`，服务死了按钮依然可用。
+- 看门狗同时是**固定入口**：浏览器书签存 `http://127.0.0.1:43180/go` 即可。服务活着时它 302 到服务当前的已认证 URL（URL 里带每次进程随机生成的 token，其中转瞬即逝、不落书签）；服务没起时它返回一个自动启动页面，就绪后自动跳转。
+- 看门狗暴露 loopback-only HTTP 接口：`/health`（含 codeHash/uptime）、`/status`（含 `handoffReady`，不含 token）、`/go`、`/handoff`（POST，服务上报当前已认证 URL）、`/reload`、`/restart`、`/start`、`/stop`、`/shutdown`。
 - host 侧另提供 `/service-control/work` 路由（`lib/index.js`），返回进行中会话 / 排队消息 / 后台任务数量——二次确认弹窗的数据源。
 - 启动命令在插件安装时从当前进程自举（node 路径 / argv / cwd / 环境变量，token/key/secret 等密钥已过滤）并持久化到 `%LOCALAPPDATA%\DeepSeekHarnessApp\watchdog.json`，重启电脑后无需运行中的进程即可拉起。
 - 日志：`%LOCALAPPDATA%\DeepSeekHarnessApp\watchdog.log`。
@@ -33,7 +34,7 @@ dsh plugin --profile web add <本目录路径>
 
 | 键 | 默认 | 说明 |
 |---|---|---|
-| watchdogPort | 3199 | 看门狗控制端口（仅本机监听）；运行时改端口会自动清掉旧看门狗 |
+| watchdogPort | 43180 | 看门狗控制端口兼浏览器入口端口（仅本机监听）；运行时改端口会自动清掉旧看门狗 |
 | autostart | true | 开机自启 |
 | crashRestart | true | 崩溃自动重启（改动即时生效） |
 

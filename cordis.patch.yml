@@ -6,6 +6,6 @@
     - id: service-control
       name: 'dsh-service-watchdog'
       config:
-        watchdogPort: 3199
+        watchdogPort: 43180
         autostart: true
         crashRestart: true

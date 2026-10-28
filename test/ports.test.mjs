@@ -7,5 +7,5 @@ test('resolvePositivePort falls back to the supplied default', () => {
   assert.equal(resolvePositivePort(null, DEFAULT_SERVICE_PORT), DEFAULT_SERVICE_PORT)
   assert.equal(resolvePositivePort('', DEFAULT_WATCHDOG_PORT), DEFAULT_WATCHDOG_PORT)
   assert.equal(resolvePositivePort(0, DEFAULT_SERVICE_PORT), DEFAULT_SERVICE_PORT)
-  assert.equal(resolvePositivePort(3199, DEFAULT_WATCHDOG_PORT), 3199)
+  assert.equal(resolvePositivePort(43180, DEFAULT_WATCHDOG_PORT), 43180)
 })
