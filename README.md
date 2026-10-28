@@ -50,7 +50,9 @@ dsh plugin --profile web add <本目录路径>
 npm install   # 安装 peer 依赖（@deepseek-ai/* 等），干净检出后必须先装
 node --test test/*.mjs   # 需要 Node ≥ 22（测试运行器展开通配符）
 node test/integration/entry-plane.mjs   # 入口平面 + 老端口退休的隔离集成测试
+node test/integration/launcher-single-owner.mjs   # launcher 单实例守卫（健康即退出 / 失败开放）
 ```
 
 `entry-plane.integration.mjs` 会真的拉起两个看门狗子进程，只用临时端口（33180 / 43380 / 43390），不碰线上的 3180 服务与 43180 看门狗；25 项断言覆盖 `/go` 三态（启动页 / 回退 / 跳转）、8 类坏 `/handoff` payload、跨站 Origin 403、外站 Host 403（裸 socket）、`POST /go` 405、不泄 token、老实例退休。退出码非 0 即失败。
+`launcher-single-owner.mjs` 验证同一看门狗不会被 HKCU Run 与插件重复拉起：端口上已有健康实例时启动器直接退出，实例消失后又能正常拉起（失败开放），7 项断言。
 

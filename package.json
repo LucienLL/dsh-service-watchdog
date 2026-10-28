@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "test": "node --test test/*.mjs",
-    "test:integration": "node test/integration/entry-plane.mjs"
+    "test:integration": "node test/integration/entry-plane.mjs && node test/integration/launcher-single-owner.mjs"
   },
   "keywords": [
     "deepseek-harness",
